@@ -1,10 +1,9 @@
-import { Tabs } from 'expo-router';
-import React from 'react';
+import { Tabs } from "expo-router";
+import React from "react";
 
-import { HapticTab } from '@/components/haptic-tab';
-import { IconSymbol } from '@/components/ui/icon-symbol';
-import { Colors } from '@/constants/theme';
-import { useColorScheme } from '@/hooks/use-color-scheme';
+import { Colors } from "@/constants/theme";
+import { useColorScheme } from "@/hooks/use-color-scheme";
+import { FontAwesome5 } from "@expo/vector-icons";
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
@@ -12,22 +11,49 @@ export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
+        tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
         headerShown: false,
-        tabBarButton: HapticTab,
-      }}>
+        tabBarShowLabel: false,
+        tabBarStyle: {
+          paddingTop: 10,
+        },
+      }}
+    >
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
+          title: "Home",
+          tabBarIcon: ({ color }) => (
+            <FontAwesome5 name="home" size={25} color={color} />
+          ),
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name="shopping"
         options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
+          title: "shopping",
+          tabBarIcon: ({ color }) => (
+            <FontAwesome5 name="shopping-cart" size={25} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="alarm"
+        options={{
+          title: "alarm",
+          tabBarIcon: ({ color }) => (
+            <FontAwesome5 name="bell" size={25} color={color} />
+          ),
+        }}
+      />
+
+      <Tabs.Screen
+        name="myPage"
+        options={{
+          title: "myPage",
+          tabBarIcon: ({ color }) => (
+            <FontAwesome5 name="user" size={25} color={color} />
+          ),
         }}
       />
     </Tabs>
